@@ -1,4 +1,7 @@
 # gardener.py
+LIGHT_PIN = 20
+PUMP_PIN = 12
+
 import threading
 import schedule
 import time
@@ -10,9 +13,6 @@ except RuntimeError:
     print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
 
 GPIO.setmode(GPIO.BCM)
-
-LIGHT_PIN = 18
-PUMP_PIN = 20
 
 GPIO.setup(LIGHT_PIN, GPIO.OUT)
 GPIO.setup(PUMP_PIN, GPIO.OUT)
@@ -47,17 +47,15 @@ atexit.register(exit_handler)
 
 
 
+# Turn water on every 30 minutes for 10 seconds
+schedule.every(30).minutes.do(threaded, water, forLength=10)
 
-
-schedule.every(30).seconds.do(threaded, water, forLength=5)
-#schedule.every(30).seconds.do(threaded, light, action=GardenerAction.turnOff)
-
-#schedule.every(10).minutes.do(job)
-#schedule.every().hour.do(job)
-#schedule.every().day.at("10:30").do(job)
-#schedule.every().monday.do(job)
-#schedule.every().wednesday.at("13:15").do(job)
-
+# Other scheduling examples
+#schedule.every().hour.do(threaded, light, forLength=300)
+#schedule.every().day.at("10:30").do(threaded, light, action=GardenerAction.turnOn)
+#schedule.every().day.at("12:30").do(threaded, light, action=GardenerAction.turnOff)
+#schedule.every().monday.do(threaded, water, forLength=30)
+#schedule.every().wednesday.at("13:15").do(threaded, light, forLength=30)
 
 
 

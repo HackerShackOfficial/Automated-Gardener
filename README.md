@@ -91,7 +91,7 @@ sudo vim /etc/rc.local
 Press `i`. Before `exit 0`, add 
 
 ```
-python <pwd output>/gardener.py
+python <pwd output>/gardener.py &
 ```
 
 Press `esc` then `:wq!` to save and quit.

@@ -58,7 +58,9 @@ After you've modified the gardener file, press `esc` to exit edit mode, then `:w
 ### Install Dependencies
 Install a couple dependencies before you start the program.
 
-``` sudo pip install -r requirements.txt ```
+```
+sudo pip install -r requirements.txt
+```
 
 Run the program
 
